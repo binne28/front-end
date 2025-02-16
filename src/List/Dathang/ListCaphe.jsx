@@ -3,8 +3,23 @@ import React from 'react'
 function ListCaphe({ isLogin }) {
   const listCaphe = [
     {
-      url: 'https://minio.thecoffeehouse.com/image/admin/1737355128_tcx-dau_400x400.png',
-      name_cf: 'Dâu Phô Mai',
+      url: 'https://minio.thecoffeehouse.com/image/admin/1737357451_latte-nong_400x400.png',
+      name_cf: 'Latte Nóng',
+      price: '55.000đ',
+    },
+    {
+      url: 'https://minio.thecoffeehouse.com/image/admin/1737357451_latte-nong_400x400.png',
+      name_cf: 'Latte Nóng',
+      price: '55.000đ',
+    },
+    {
+      url: 'https://minio.thecoffeehouse.com/image/admin/1737357451_latte-nong_400x400.png',
+      name_cf: 'Latte Nóng',
+      price: '55.000đ',
+    },
+    {
+      url: 'https://minio.thecoffeehouse.com/image/admin/1737357451_latte-nong_400x400.png',
+      name_cf: 'Latte Nóng',
       price: '55.000đ',
     },
   ]

@@ -6,7 +6,6 @@ import axios from 'axios';
 import * as Yup from 'yup';
 import API__URL from '../../config';
 import Loading from '../Loading/loading';
-import Admin from '../../Admin/admin';
 
 const signin = async (values) => {
   const response = await axios.post(`${API__URL}/auth/login`, values, {
@@ -20,10 +19,8 @@ const signin = async (values) => {
   }
 };
 
-function Signin() {
-  const navigate = useNavigate();
+function Signin({setTypeAcc}) {
   const [isLoading, setIsLoading] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(null);
 
   const mutation = useMutation({
     //gửi yêu cầu đăng nhập
@@ -35,21 +32,18 @@ function Signin() {
       localStorage.removeItem('token');
       localStorage.removeItem('user');
 
-      setIsAdmin(data.user.username === "Admin");
-      
       setIsLoading(true);
-
-      
+    
       setTimeout(() => {
         setIsLoading(false);
-        // check admin hay user
-        if(isAdmin){
-          return <Admin/>
-        }else{
-          navigate('/trang-chu');
+        if (data.user.username === "Admin") {
+          setTypeAcc('admin');
+        } else {
+          setTypeAcc('user')
         }
       }, 1500);
     },
+    
 
     onError: (error) => {
       setIsLoading(false);
@@ -97,8 +91,8 @@ function Signin() {
                     type="text"
                     placeholder="Enter username"
                     className={`w-full p-3 border ${errors.username && touched.username
-                        ? 'border-red-500 focus:ring-red-500'
-                        : 'border-gray-300 focus:ring-green-500'
+                      ? 'border-red-500 focus:ring-red-500'
+                      : 'border-gray-300 focus:ring-green-500'
                       } rounded-lg focus:outline-none focus:ring-2`}
                   />
                   {errors.username && touched.username && (
@@ -116,8 +110,8 @@ function Signin() {
                     type="password"
                     placeholder="Enter password"
                     className={`w-full p-3 border ${errors.password && touched.password
-                        ? 'border-red-500 focus:ring-red-500'
-                        : 'border-gray-300 focus:ring-green-500'
+                      ? 'border-red-500 focus:ring-red-500'
+                      : 'border-gray-300 focus:ring-green-500'
                       } rounded-lg focus:outline-none focus:ring-2`}
                   />
                   {errors.password && touched.password && (

@@ -1,9 +1,12 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import './admin.scss';
+import Navbar from './component/Navbar/navbar';
+import Main from './component/Main/main';
 function Admin() {
   return (
-    <div>
-        <h1>Đây là page admin</h1>
+    <div className='boDy'>
+      <Navbar />
+      <Main />
     </div>
   )
 }

@@ -3,8 +3,13 @@ import React from 'react'
 function ListMonnong({ isLogin }) {
   const listMonnong = [
     {
-      url: 'https://minio.thecoffeehouse.com/image/admin/1737355128_tcx-dau_400x400.png',
-      name_cf: 'Dâu Phô Mai',
+      url: 'https://minio.thecoffeehouse.com/image/admin/1737356364_oolong-kim-quat-tran-chau_400x400.png',
+      name_cf: 'Hồng Trà Sữa Nóng',
+      price: '55.000đ',
+    },
+    {
+      url: 'https://minio.thecoffeehouse.com/image/admin/1737356364_oolong-kim-quat-tran-chau_400x400.png',
+      name_cf: 'Hồng Trà Sữa Nóng',
       price: '55.000đ',
     },
   ]

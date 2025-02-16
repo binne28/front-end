@@ -3,8 +3,18 @@ import React from 'react'
 function ListDaxay({ isLogin }) {
   const listDaxay = [
     {
-      url: 'https://minio.thecoffeehouse.com/image/admin/1737355128_tcx-dau_400x400.png',
-      name_cf: 'Dâu Phô Mai',
+      url: 'https://minio.thecoffeehouse.com/image/admin/1737355736_fosty-banh-kem-dau_400x400.png',
+      name_cf: 'Đá Xay Frosty',
+      price: '55.000đ',
+    },
+    {
+      url: 'https://minio.thecoffeehouse.com/image/admin/1737355736_fosty-banh-kem-dau_400x400.png',
+      name_cf: 'Đá Xay Frosty',
+      price: '55.000đ',
+    },
+    {
+      url: 'https://minio.thecoffeehouse.com/image/admin/1737355736_fosty-banh-kem-dau_400x400.png',
+      name_cf: 'Đá Xay Frosty',
       price: '55.000đ',
     },
   ]

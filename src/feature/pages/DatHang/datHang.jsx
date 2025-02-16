@@ -11,7 +11,6 @@ import ListTrasua from "../../../List/Dathang/ListTrasua";
 import ListTratraicay from "../../../List/Dathang/ListTratraicay";
 import ListTraxanh from "../../../List/Dathang/ListTraxanh";
 
-
 function DatHang() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isLogin, setIsLogin] = useState(false);
@@ -26,7 +25,7 @@ function DatHang() {
   const categories = [
     {
       name: "A-Mê",
-      img: "https://minio.thecoffeehouse.com/image/admin/17y36865425_eme.png"
+      img: "https://minio.thecoffeehouse.com/image/admin/1736865425_eme.png"
     },
     {
       name: "Trái cây xay 0°C",
