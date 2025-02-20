@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './head.scss';
 import Modal from 'react-bootstrap/Modal';
+import axios from 'axios';
 
 function Head() {
   const [username, setUsername] = useState(null);
@@ -12,7 +13,7 @@ function Head() {
   const [suggestions, setSuggestions] = useState([]);
 
   const fetchSuggestions = async (query) => {
-    if (query.length < 3) return; 
+    if (query.length < 3) return;
     const res = await fetch(
       `https://nominatim.openstreetmap.org/search?format=json&q=${query}&addressdetails=1&limit=3`
     );
@@ -24,10 +25,22 @@ function Head() {
     setUsername(localStorage.getItem('username'));
   }, []);
 
-  const handleLogout = () => {
-    localStorage.removeItem('username');
-    setUsername(null);
-    navigate("/dang-nhap");
+  const handleLogout = async () => {
+    try {
+      await axios.post('API/logout', {},
+        {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+          },
+        },
+      );
+      console.log('Logout user sucessfull !');
+      localStorage.removeItem('username');
+      localStorage.removeItem('accessToken');
+      navigate('/dang-nhap');
+    } catch (error) {
+      console.log("Logout failed", error);
+    }
   }
 
   return (

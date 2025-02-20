@@ -31,12 +31,13 @@ function Signin({setTypeAcc}) {
       localStorage.setItem('username', data.user.username);
       localStorage.removeItem('token');
       localStorage.removeItem('user');
-
+      console.log(data.message);
+      
       setIsLoading(true);
     
       setTimeout(() => {
         setIsLoading(false);
-        if (data.user.username === "Admin") {
+        if (data.user.role === "Admin") {
           setTypeAcc('admin');
         } else {
           setTypeAcc('user')

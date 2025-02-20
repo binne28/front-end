@@ -66,7 +66,7 @@ function DatHang() {
             <span className='icon'>
               <i className="fa fa-trophy text-2xl transform scale-x-125 text-[#ffb141]" aria-hidden="true"></i>
             </span>
-            <span className='text text-[2rem]'><b>Sản phẩm từ nhà</b></span>
+            <span className='text text-[2rem]'><b className='text-black'>Sản phẩm từ nhà</b></span>
           </div>
         </div>
         {/* menu  */}
