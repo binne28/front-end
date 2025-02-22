@@ -15,35 +15,51 @@ import Admin from './Admin/admin';
 
 function Coffe() {
   const queryClient = new QueryClient();
-  const [typeAcc, setTypeAcc] = useState('admin');
+  const [typeAcc, setTypeAcc] = useState('user');
 
   return (
     <QueryClientProvider client={queryClient}>
-      {typeAcc === 'admin' ? (
-        <Router>
-          <div className='admin'>
-            <Admin />
-          </div>
-        </Router>
-      ) : (
-        <Router>
-          <div className='user'>
-            <Head />
-            <Routes>
-              <Route path="/" element={<TrangChu />} />
-              <Route path="/trang-chu" element={<TrangChu />} />
-              <Route path="/tin-tuc" element={<TinTuc />} />
-              <Route path="/cua-hang" element={<CuaHang />} />
-              <Route path="/khuyen-mai" element={<KhuyenMai />} />
-              <Route path="/dat-hang" element={<DatHang />} />
-              <Route path="/dang-nhap" element={<Signin />} />
-              <Route path="/dang-ky" element={<Signup />} />
-            </Routes>
-            <Footer />
-          </div>
-        </Router>
-      )}
+      <Router>
+        <MainApp typeAcc={typeAcc} setTypeAcc={setTypeAcc} />
+      </Router>
     </QueryClientProvider>
+  );
+}
+
+function MainApp({ typeAcc, setTypeAcc }) {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (typeAcc === 'admin') {
+      navigate('/home-admin'); 
+    } else if (typeAcc === 'user') {
+      navigate('/trang-chu')
+    }
+  }, [typeAcc, navigate]);
+
+  return (
+    <div>
+      {typeAcc === 'admin' ? (
+        <div className='admin'>
+          <Admin />
+        </div>
+      ) : (
+        <div className='user'>
+          <Head />
+          <Routes>
+            <Route path="/" element={<TrangChu />} />
+            <Route path="/trang-chu" element={<TrangChu />} />
+            <Route path="/tin-tuc" element={<TinTuc />} />
+            <Route path="/cua-hang" element={<CuaHang />} />
+            <Route path="/khuyen-mai" element={<KhuyenMai />} />
+            <Route path="/dat-hang" element={<DatHang />} />
+            <Route path="/dang-nhap" element={<Signin setTypeAcc={setTypeAcc} />} />
+            <Route path="/dang-ky" element={<Signup />} />
+          </Routes>
+          <Footer />
+        </div>
+      )}
+    </div>
   );
 }
 

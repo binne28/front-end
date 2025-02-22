@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './navbar.scss';
 import axios from 'axios';
-import classNames from 'classnames';
 
 function Navbar() {
     const navigate = useNavigate();

@@ -21,28 +21,29 @@ function Head() {
     setSuggestions(data);
   };
 
-  const fetchUsername = async () => {
-    try {
-      const response = await axios.get('API/user-info', {
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
-        }
-      });
+  // const fetchUsername = async () => {
+  //   try {
+  //     const response = await axios.get('API/user-info', {
+  //       headers: {
+  //         'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+  //       }
+  //     });
   
-      if (response.data && response.data.username) {
-        setUsername(response.data.username); 
-      } else {
-        setUsername(null); 
-      }
-    } catch (error) {
-      console.error("Lỗi khi lấy username:", error);
-      setUsername(null);
-    }
-  };
+  //     if (response.data && response.data.username) {
+  //       setUsername(response.data.username); 
+  //     } else {
+  //       setUsername(null); 
+  //     }
+  //   } catch (error) {
+  //     console.error("Lỗi khi lấy username:", error);
+  //     setUsername(null);
+  //   }
+  // };
   
 
   useEffect(() => { 
-    fetchUsername();
+    // fetchUsername();
+    setUsername(localStorage.getItem('username'));
   }, []);
 
   const handleLogout = async () => {

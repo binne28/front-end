@@ -6,7 +6,7 @@ import axios from 'axios';
 import * as Yup from 'yup';
 import API__URL from '../../config';
 import Loading from '../Loading/loading';
-
+// import "./Signin.scss"
 const signin = async (values) => {
   const response = await axios.post(`${API__URL}/auth/login`, values, {
     headers: { 'Content-Type': 'application/json' },
@@ -27,7 +27,7 @@ function Signin({setTypeAcc}) {
     mutationFn: signin,
 
     onSuccess: (data) => {
-      localStorage.setItem('accessToken', data.tokens.accessToken);
+      localStorage.setItem('accessToken', data.tokens);
       localStorage.setItem('username', data.user.username);
       console.log(data.message);
       
@@ -40,7 +40,7 @@ function Signin({setTypeAcc}) {
         } else {
           setTypeAcc('user')
         }
-      }, 1500);
+      }, 1000);
     },
     
 
@@ -66,7 +66,7 @@ function Signin({setTypeAcc}) {
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100 mt-[2.4rem]">
       <div className="w-full max-w-md bg-white rounded-lg shadow-md p-6">
-        <h1 className="text-2xl font-semibold text-center mb-4">Sign in to your account</h1>
+        <h1 className="text-2xl font-semibold text-center mb-4 text-black">Sign in to your account</h1>
 
         {isLoading ? (
           <Loading />
