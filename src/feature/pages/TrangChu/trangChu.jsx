@@ -13,6 +13,7 @@ function TrangChu() {
   useEffect(() => {
     setIsLogin(localStorage.getItem('user') ? true : false);
   }, []);
+  
   const handleClick = (index) => {
     setActiveIndex(index)
   }

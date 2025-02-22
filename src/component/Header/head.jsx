@@ -21,8 +21,28 @@ function Head() {
     setSuggestions(data);
   };
 
+  const fetchUsername = async () => {
+    try {
+      const response = await axios.get('API/user-info', {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+        }
+      });
+  
+      if (response.data && response.data.username) {
+        setUsername(response.data.username); 
+      } else {
+        setUsername(null); 
+      }
+    } catch (error) {
+      console.error("Lỗi khi lấy username:", error);
+      setUsername(null);
+    }
+  };
+  
+
   useEffect(() => { 
-    setUsername(localStorage.getItem('username'));
+    fetchUsername();
   }, []);
 
   const handleLogout = async () => {
@@ -49,8 +69,8 @@ function Head() {
       <div className='head_delivery'>
         <img src="https://minio.thecoffeehouse.com/images/tch-web-order/Delivery2.png" alt="" />
         <div className='text_delivery' onClick={() => setShow(true)}>
-          <h5>Giao hàng</h5>
-          <p>Tại: Nhập địa chỉ giao hàng</p>
+          <h5 className='text-white'>Giao hàng</h5>
+          <p className='text-white'>Tại: Nhập địa chỉ giao hàng</p>
         </div>
         {/* start modal */}
         <Modal show={show} onHide={() => setShow(false)} className='mt-[8rem] relative'>

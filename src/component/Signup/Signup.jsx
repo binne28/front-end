@@ -8,7 +8,7 @@ import axios from "axios";
 import API__URL from "../../config";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+// import "./Signup.scss";
 const signupUser = async (values) => {
     const response = await axios.post(`${API__URL}/auth/register`, values, {
         headers: { 'Content-Type': 'application/json' },

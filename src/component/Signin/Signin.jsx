@@ -29,8 +29,6 @@ function Signin({setTypeAcc}) {
     onSuccess: (data) => {
       localStorage.setItem('accessToken', data.tokens.accessToken);
       localStorage.setItem('username', data.user.username);
-      localStorage.removeItem('token');
-      localStorage.removeItem('user');
       console.log(data.message);
       
       setIsLoading(true);
