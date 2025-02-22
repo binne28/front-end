@@ -21,7 +21,7 @@ function Head() {
     setSuggestions(data);
   };
 
-  useEffect(() => {
+  useEffect(() => { 
     setUsername(localStorage.getItem('username'));
   }, []);
 

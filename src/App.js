@@ -15,8 +15,8 @@ import Admin from './Admin/admin';
 
 function Coffe() {
   const queryClient = new QueryClient();
-  const [typeAcc, setTypeAcc] = useState('admin');
- 
+  const [typeAcc, setTypeAcc] = useState('user');
+
   return (
     <QueryClientProvider client={queryClient}>
       {typeAcc === 'admin' ? (
@@ -30,6 +30,7 @@ function Coffe() {
           <div className='user'>
             <Head />
             <Routes>
+              <Route path="/" element={<TrangChu />} />
               <Route path="/trang-chu" element={<TrangChu />} />
               <Route path="/tin-tuc" element={<TinTuc />} />
               <Route path="/cua-hang" element={<CuaHang />} />
