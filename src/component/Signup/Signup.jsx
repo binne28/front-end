@@ -5,16 +5,16 @@ import { useMutation } from "@tanstack/react-query";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import * as Yup from "yup";
 import axios from "axios";
-import API__URL from "../../config";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import API__URL from "../../config";
 // import "./Signup.scss";
 const signupUser = async (values) => {
     const response = await axios.post(`${API__URL}/auth/register`, values, {
         headers: { 'Content-Type': 'application/json' },
     });
 
-    if (response.status === 201) {
+    if (response.status === 201 || response.status === 200) {
         return response.data;
     } else {
         throw new Error('Đăng kí thất bại');
@@ -25,23 +25,14 @@ function Signup() {
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
 
-    const showToastMessage = (toastMess) => {
-        {toastMess ? 
-            (
-                toast.success("Registered successfully !", {
-                    position: "top-right",
-                    autoClose: 1100,
-                })
-            )
-             : 
-            (
-                toast.error("Registered failed !", {
-                    position: "top-right",
-                    autoClose: 1100,
-                })
-            )
+    const showToastMessage = (isSuccess) => {
+        if (isSuccess) {
+            toast.success("Registered successfully!", { position: "top-right", autoClose: 1100 });
+        } else {
+            toast.error("Registration failed!", { position: "top-right", autoClose: 1100 });
         }
     };
+
 
     const mutation = useMutation({
         // gửi yêu cầu đăng kí
@@ -49,9 +40,9 @@ function Signup() {
 
         //nếu đăng kí thành công
         onSuccess: (data) => {
-            localStorage.setItem('username', data.user.username);
+            localStorage.setItem('user', JSON.stringify(data.user));
             showToastMessage(true);
-            navigate('/dang-nhap');
+            setTimeout(() => navigate('/dang-nhap'), 1000); 
         },
 
         // nếu đăng kí thất bại
@@ -59,16 +50,17 @@ function Signup() {
             showToastMessage(false);
             if (error.response) {
                 if (error.response.status === 401) {
-                    console.log('Thông tin đăng kys không hợp lệ. Vui lòng kiểm tra lại username và password');
+                    console.log('Thông tin đăng ký không hợp lệ. Vui lòng kiểm tra lại username và password');
                 } else {
                     console.log(`Lỗi: ${error.response.statusText}`);
                 }
-            } else {
+            } else if (error.request) {
                 console.log('Không thể kết nối tới server. Vui lòng thử lại sau.');
+            } else {
+                console.log(`Lỗi không xác định: ${error.message}`);
             }
         },
     });
-    // Schema xác thực bằng Yup
     const validationSchema = Yup.object().shape({
         username: Yup.string()
             .min(2, "Tên người dùng phải có ít nhất 2 ký tự")
@@ -92,6 +84,7 @@ function Signup() {
 
     return (
         <div className="flex justify-center items-center min-h-screen bg-gray-100 mt-[4rem]">
+            <ToastContainer />
             <div className="w-full max-w-md bg-white rounded-lg shadow-md p-6">
                 <h1 className="text-2xl font-semibold text-center mb-4">
                     Sign up to create account
@@ -99,8 +92,8 @@ function Signup() {
 
                 <Formik
                     initialValues={{
-                        email: "",
                         username: "",
+                        email: "",
                         password: "",
                     }}
                     validationSchema={validationSchema}
@@ -183,7 +176,7 @@ function Signup() {
                                     <p className="text-red-500 text-sm mt-2">{errors.password}</p>
                                 )}
                                 <button
-                                    type="submit"
+                                    type="button"
                                     onClick={() => setShowPassword(!showPassword)}
                                     className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5 mt-7"
                                 >
@@ -192,7 +185,7 @@ function Signup() {
                             </div>
 
                             <button
-                                type="submit"
+                                type="button"
                                 disabled={mutation.isPending}
                                 className="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600"
                             >

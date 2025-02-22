@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './head.scss';
 import Modal from 'react-bootstrap/Modal';
 import axios from 'axios';
+import API__URL from '../../config';
 
 function Head() {
   const [username, setUsername] = useState(null);
@@ -28,7 +29,7 @@ function Head() {
   //         'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
   //       }
   //     });
-  
+
   //     if (response.data && response.data.username) {
   //       setUsername(response.data.username); 
   //     } else {
@@ -39,16 +40,16 @@ function Head() {
   //     setUsername(null);
   //   }
   // };
-  
 
-  useEffect(() => { 
+
+  useEffect(() => {
     // fetchUsername();
     setUsername(localStorage.getItem('username'));
   }, []);
 
   const handleLogout = async () => {
     try {
-      await axios.post('API/logout', {},
+      await axios.post(`${API__URL}/auth/logout`, {},
         {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
@@ -116,7 +117,7 @@ function Head() {
             <Link to="/dat-hang">
               <img src="https://order.thecoffeehouse.com/_nuxt/img/Carticon.373916c.png" alt="order" />
             </Link>
-            <p className='text-red-500 font-bold hover:underline my-auto hover:cursor-pointer' onClick={handleLogout}><i>Đăng xuất</i></p>
+            <p className='text-red-500 font-bold hover:underline my-auto hover:cursor-pointer' ><i onClick={handleLogout}>Đăng xuất</i></p>
           </div>
         ) : (
           <Link to="/dang-nhap">

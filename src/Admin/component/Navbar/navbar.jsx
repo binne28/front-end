@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './navbar.scss';
 import axios from 'axios';
+import API__URL from '../../../config';
 
 function Navbar() {
     const navigate = useNavigate();
@@ -13,7 +14,7 @@ function Navbar() {
 
     const handleLogout = async () => {
         try {
-          await axios.post('API/logout', {},
+          await axios.post(`${API__URL}/auth/logout`, {},
             {
               headers: {
                 'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
@@ -66,7 +67,7 @@ function Navbar() {
                 </ul>
                 <div onClick={handleLogout} className='footer_nav'>
                     <i className='fa fa-right-from-bracket text-white'></i>
-                    <p className='text-white '>Logout</p>
+                    <p className='text-white ' onClick={handleLogout}>Logout</p>
                 </div>
             </div>
         </div>

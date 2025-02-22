@@ -11,15 +11,16 @@ const signin = async (values) => {
   const response = await axios.post(`${API__URL}/auth/login`, values, {
     headers: { 'Content-Type': 'application/json' },
   });
-
-  if (response.status === 201) {
+  console.log("Respon: ", response.data);
+  
+  if (response.status === 201 || response.status === 200) {
     return response.data;
   } else {
     throw new Error('Đăng nhập không thành công');
   }
 };
 
-function Signin({setTypeAcc}) {
+function Signin({ setTypeAcc }) {
   const [isLoading, setIsLoading] = useState(false);
 
   const mutation = useMutation({
@@ -30,9 +31,7 @@ function Signin({setTypeAcc}) {
       localStorage.setItem('accessToken', data.tokens);
       localStorage.setItem('username', data.user.username);
       console.log(data.message);
-      
       setIsLoading(true);
-    
       setTimeout(() => {
         setIsLoading(false);
         if (data.user.role === "Admin") {
@@ -42,7 +41,7 @@ function Signin({setTypeAcc}) {
         }
       }, 1000);
     },
-    
+
 
     onError: (error) => {
       setIsLoading(false);
