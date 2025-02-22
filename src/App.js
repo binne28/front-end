@@ -15,7 +15,7 @@ import Admin from './Admin/admin';
 
 function Coffe() {
   const queryClient = new QueryClient();
-  const [typeAcc, setTypeAcc] = useState('admin');
+  const [typeAcc, setTypeAcc] = useState('user');
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -32,8 +32,10 @@ function MainApp({ typeAcc, setTypeAcc }) {
   useEffect(() => {
     if (typeAcc === 'admin') {
       navigate('/home-admin'); 
-    } 
-  }, [typeAcc, navigate]);
+    }else if(typeAcc == 'user'){
+      navigate('/trang-chu');
+    }
+  }, []);
 
   return (
     <div>
