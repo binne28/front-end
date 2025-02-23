@@ -117,7 +117,7 @@ function Head() {
             <Link to="/dat-hang">
               <img src="https://order.thecoffeehouse.com/_nuxt/img/Carticon.373916c.png" alt="order" />
             </Link>
-            <p className='text-red-500 font-bold hover:underline my-auto hover:cursor-pointer' ><i onClick={handleLogout}>Đăng xuất</i></p>
+            <p onClick={handleLogout} className='text-red-500 font-bold hover:underline my-auto hover:cursor-pointer' ><i>Đăng xuất</i></p>
           </div>
         ) : (
           <Link to="/dang-nhap">

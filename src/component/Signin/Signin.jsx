@@ -28,7 +28,6 @@ function Signin({ setTypeAcc }) {
     mutationFn: signin,
 
     onSuccess: (data) => {
-      //tokens  => token
       //Dữ liệu bị thừa cái user, tìm ròi sửa (trên devtool nó hiện thừa cái user)
       localStorage.setItem('accessToken', data.token);
       localStorage.setItem('username', data.user.username);

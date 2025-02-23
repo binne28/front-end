@@ -24,7 +24,7 @@ function Navbar() {
           console.log('Logout admin sucessfull !');
           localStorage.removeItem('username');
           localStorage.removeItem('accessToken');
-          navigate('/dang-nhap');
+          window.location.href = "/dang-nhap";
         } catch (error) {
           console.log("Logout failed", error);
         }

@@ -35,7 +35,7 @@ function MainApp({ typeAcc, setTypeAcc }) {
     }else if(typeAcc == 'user'){
       navigate('/trang-chu');
     }
-  }, []);
+  }, [typeAcc]);
 
   return (
     <div>
