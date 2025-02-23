@@ -29,6 +29,7 @@
     "react-toastify": "^11.0.3",
     "recharts": "^2.15.1",
     "sass": "^1.83.1",
+    "web-vitals": "^4.2.4",
     "yup": "^1.6.1"
   },
   "scripts": {

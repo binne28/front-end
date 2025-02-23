@@ -183,9 +183,9 @@ function Signup() {
                                     {showPassword ? <FaEyeSlash /> : <FaEye />}{" "}
                                 </button>
                             </div>
-
+                            {/* type=button => type=submit*/}
                             <button
-                                type="button"
+                                type="submit"
                                 disabled={mutation.isPending}
                                 className="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600"
                             >
