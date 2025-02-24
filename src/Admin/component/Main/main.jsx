@@ -8,12 +8,12 @@ import './main.scss';
 function Main() {
   return (
     <div className='main relative'>
-      <div className='w-[90%] h-auto  mt-[5px] rounded-bl-[30px] rounded-br-[30px] bg-black absolute border-[5px] border-white flex justify-around'>
+      <div className='w-[90%] h-auto  mt-[1px] rounded-bl-[30px] rounded-br-[30px] bg-black absolute border-[5px] border-white flex justify-around'>
         <p className='text-[25px]'>0 <i className='fa fa-user'></i></p>
         <p className='text-[25px]'>0 <i className='fa fa-mug-hot'></i></p>
         <p className='text-[25px]'>0 <i className='fa fa-cart-shopping'></i></p>
       </div>
-      <div className='w-[98%] h-full my-[5px] rounded-[30px] bg-black pt-[8rem]'>
+      <div className='w-[98%] h-full my-[5px] rounded-[30px] bg-black pt-[7rem]'>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/home-admin" element={<Home />} />

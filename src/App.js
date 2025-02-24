@@ -15,7 +15,7 @@ import Admin from './Admin/admin';
 
 function Coffe() {
   const queryClient = new QueryClient();
-  const [typeAcc, setTypeAcc] = useState('admin');
+  const [typeAcc, setTypeAcc] = useState(null);
 
   return (
     <QueryClientProvider client={queryClient}>
